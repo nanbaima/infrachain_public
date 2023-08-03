@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+      <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+body {font-size:16px;}
+.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
+.w3-half img:hover{opacity:1}
+</style>
+</head>
+<body>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-teal w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+  <div class="w3-container">
+    <h1 class="w3-padding-64"><b>Green<br>Link</b></h1>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a>
+    <a href="#scenarioA" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Scenario A - 1st January</a>
+    <a href="#scenarioB" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Scenario B - 30th January</a>
+    <a href="#scenarioC" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Scenario C - 30th April</a>
+    <a href="#blockahin_plots" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Blockchain results</a>
+
+  </div>
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-hide-large w3-teal w3-xlarge w3-padding">
+  <a href="javascript:void(0)" class="w3-button w3-teal w3-margin-right" onclick="w3_open()">☰</a>
+  <span>Company Name</span>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
+
+  <!-- Header -->
+  <div class="w3-container" style="margin-top:80px" id="scenarioA">
+    <h1 class="w3-jumbo"><b>Energy Saving Scenarios</b></h1>
+    <h1 class="w3-xxxlarge w3-text-teal"><b>Scenario A.</b></h1>
+    <hr style="width:50px;border:5px solid #00d987" class="w3-round">
+    <p>On this winter day, both wind and solar energy are not strong; during the night, wind production can account for almost 50% of the mix because demand is low, but as consumption increases during the day, the renewable share decreases since the photovoltaic production is not enough to compensate. The share of renewables is higher during the night.
+    </p>
+      <div class="w3-center w3-hover-shadow" onclick="myFunction_1()">
+	   <div id="chart1" class="chart ">
+       </div> </div>
+
+    </div>
+
+  <div class="w3-container"  id="scenarioB">
+    <h1 class="w3-xxxlarge w3-text-teal"><b>Scenario B.</b></h1>
+    <hr style="width:50px;border:5px solid #00d987" class="w3-round">
+    <p>It is again full winter, but in this case the weather conditions allow for a very strong wind production in the first part of the day; the share of renewables stays high at almost 70% throughout the day and starts to decrease slowly as the evening consumption peak, typical in weekdays, requires the generation of additional electricity from fossil fuels. The share of renewables is higher from the night to the afternoon.
+    </p>
+      <div class=" w3-center w3-hover-shadow" onclick="myFunction_2()" >
+	   <div id="chart2" class="chart"></div>
+  </div>
+
+  </div>
+
+  <div class="w3-container"  id="scenarioC">
+    <h1 class="w3-xxxlarge w3-text-teal"><b>Scenario C.</b></h1>
+    <hr style="width:50px;border:5px solid #00d987" class="w3-round">
+    <p>  Now it is spring and wind production is lower than in the previous season. Photovoltaics are now stronger and dominate the renewable mix. The actual share of renewable energy in the total mix is low for the moment, reaching its peak at noon with more than 30%. This proportion will increase with the advance of summer and represents a situation in which the share of renewables is higher during the morning and afternoon.
+    </p>
+      <div class="w3-center w3-hover-shadow" onclick="myFunction_3()" >
+	   <div id="chart3" class="chart"></div>
+  </div>
+
+  </div>
+
+  <div class="w3-container"  id="blockahin_plots">
+    <h1 class="w3-xxxlarge w3-text-teal"><b>Blockchain results.</b></h1>
+    <hr style="width:50px;border:5px solid #00d987" class="w3-round">
+    <p>After determining how the energy mix is distributed that day, taking into account user preferences and determining the isolation level of this building, the AI model determines the optimal schedule to maximize the use of renewable energy by the public sector while providing the comfort of its employees at the same time.
+      <h2 id="blochain_share_improvement"> Increase in renewable share versus daily average(%): </h2>
+
+
+      <div class="w3-row blockchain" style="margin-top: 0px">
+  <div class="w3-center">
+	   <div id="blockchain_on_off" class="chart ">
+
+	   </div>
+  </div>
+
+  <div class=" w3-center w3-hover-shadow blockahin_plots">
+
+  </div>
+</div>
+
+  </div>
+
+
+</div>
+
+<!-- W3.CSS Container -->
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+</script>
+
+        <div class="w3-modal" id="geek">
+            <div class="w3-modal-content">
+                <!-- Model Header -->
+                <!-- Model Close Button in the heading-->
+                <header class="w3-container
+                    w3-white w3-text-green">
+
+                    <span class="w3-button w3-display-topright
+                        w3-white w3-text-gray w3-hover-red"
+                        onclick="document.getElementById(
+                        'geek').style.display='none'">
+                        ×
+                    </span>
+                    <h3>Send to Blockchain</h3>
+                </header>
+
+                <!-- Model Content -->
+                <div class="w3-container">
+
+                    <p>
+                       Based on the temperature provided and the characteristics of the building, the heating/cooling schedule will be optimized based on the built-in AI.
+                        To maintain transparency, and spread the optimized schedules, the AI adds the information to the Blockchain.
+                    </p>
+            <p>Desired Inside Temperature (C):</p>
+
+                    <input id="bookId" name="bookId" type="text" value="22"/>
+
+               <p>Building construction year:</p>
+                    <input id="building_year" name="building_year" type="text" value="2000"/>
+                <p>Living Space (M2):</p>
+                    <input id="living_space" name="living_space" type="text" value="120"/>
+              <p>Basement available (Yes/No):</p>
+                    <input id="basement_available" name="basement_available" type="text" value="yes"/>
+             <p>Roof insulation (Yes/No):</p>
+                    <input id="roof_insulation" name="roof_insulation" type="text" value="no"/>                </div>
+
+                <!-- Model Footer -->
+                <footer class="w3-container w3-white">
+                    <button class="w3-margin w3-round w3-right
+                        w3-blue w3-button w3-hover-blue"
+                        onclick="run_ai()">
+                        Okay
+                    </button>
+
+                    <button class="w3-margin w3-round w3-right
+                        w3-red w3-button w3-hover-red"
+                        onclick="document.getElementById('geek')
+                        .style.display='none'">
+                        Close
+                    </button>
+                </footer>
+            </div>
+        </div>
+
+
+</body>
+ <script>
+        function run_ai(){
+          $('html,body').animate({
+        scrollTop: $(".blockahin_plots").offset().top},
+        'slow');
+
+           var x = document.getElementById("bookId").value
+           var building_year = document.getElementById("building_year").value
+           var living_space = document.getElementById("living_space").value
+           var basement_available = document.getElementById("basement_available").value
+           var roof_insulation = document.getElementById("roof_insulation").value
+
+
+            console.log(x)
+            console.log(selected)
+
+            $.post( "/to_ai", {
+                scenario: selected,
+                temperature: x,
+              building_year:building_year,
+              living_space:living_space,
+              basement_available:basement_available,
+              roof_insulation:roof_insulation,
+            }, function( data ) {
+             debugger;
+
+               var increase = data[2]
+                debugger
+
+                var paragraph = document.getElementById("blochain_share_improvement");
+                var text = document.createTextNode(increase);
+                paragraph.appendChild(text);
+
+
+
+
+             var blockchain_on_of = {
+		  type: "scatter",
+		  mode: "lines",
+		  x: ['00:00:00', '01:00:00', ' 02:00:00', '03:00:00', '04:00:00', '05:00:00', '06:00:00', '07:00:00', '08:00:00', '09:00:00', '10:00:00', '11:00:00', '12:00:00', '13:00:00', ' 14:00:00', ' 15:00:00', ' 16:00:00', ' 17:00:00', ' 18:00:00', ' 19:00:00', ' 20:00:00', ' 21:00:00', ' 22:00:00', '23:00:00'],
+		   y: data[0],
+		  line: {color: '#cfa417',width: 3},
+			name: 'On/Off'
+
+		};
+ var blockchain_generation = {
+		  type: "scatter",
+		  mode: "lines",
+		  x: ['00:00:00', '01:00:00', ' 02:00:00', '03:00:00', '04:00:00', '05:00:00', '06:00:00', '07:00:00', '08:00:00', '09:00:00', '10:00:00', '11:00:00', '12:00:00', '13:00:00', ' 14:00:00', ' 15:00:00', ' 16:00:00', ' 17:00:00', ' 18:00:00', ' 19:00:00', ' 20:00:00', ' 21:00:00', ' 22:00:00', '23:00:00'],
+		   y: data[1],
+		  line: {color: '#39cf17',width: 3},
+			name: 'Renewable share'
+
+		};
+
+
+             var layout1 = {
+			showlegend: true,
+			  paper_bgcolor:'rgba(0,0,0,0)',
+              plot_bgcolor:'rgba(0,0,0,0)',
+		};
+
+
+            Plotly.newPlot('blockchain_on_off',[blockchain_on_of,blockchain_generation],layout1,{});
+
+
+
+            });
+
+
+
+            document.getElementById('geek')
+                        .style.display='none'
+        }
+    </script>
+
+    <script>
+
+        function myFunction_1() {
+
+            selected = ''
+        document.getElementById('geek')
+        .style.display='block'
+             selected = 0
+
+        }
+         function myFunction_2() {
+        document.getElementById('geek')
+        .style.display='block'
+             selected = 1
+        }
+         function myFunction_3() {
+        document.getElementById('geek')
+        .style.display='block'
+             selected = 2
+
+        }
+
+</script>
+    <script type="text/javascript">
+<!--			january-->
+
+	var january_first_pv = {
+		  type: "scatter",
+		  mode: "lines",
+		  x: ['2022-01-01 00:00:00', '2022-01-01 01:00:00', '2022-01-01 02:00:00', '2022-01-01 03:00:00', '2022-01-01 04:00:00', '2022-01-01 05:00:00', '2022-01-01 06:00:00', '2022-01-01 07:00:00', '2022-01-01 08:00:00', '2022-01-01 09:00:00', '2022-01-01 10:00:00', '2022-01-01 11:00:00', '2022-01-01 12:00:00', '2022-01-01 13:00:00', '2022-01-01 14:00:00', '2022-01-01 15:00:00', '2022-01-01 16:00:00', '2022-01-01 17:00:00', '2022-01-01 18:00:00', '2022-01-01 19:00:00', '2022-01-01 20:00:00', '2022-01-01 21:00:00', '2022-01-01 22:00:00', '2022-01-01 23:00:00'],
+		  y: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.007360400302972756, 0.04231168407575814, 0.0842268213122273, 0.11711080254308807, 0.13137827659529164, 0.12853482942343802, 0.09810315568218773, 0.0429263610504465, 0.003941593587897292, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+		  line: {color: '#cfa417',width: 3},
+			name: 'PV'
+
+		};
+
+		var january_first_wind = {
+		  type: "scatter",
+		  mode: "lines",
+		  x: ['2022-01-01 00:00:00', '2022-01-01 01:00:00', '2022-01-01 02:00:00', '2022-01-01 03:00:00', '2022-01-01 04:00:00', '2022-01-01 05:00:00', '2022-01-01 06:00:00', '2022-01-01 07:00:00', '2022-01-01 08:00:00', '2022-01-01 09:00:00', '2022-01-01 10:00:00', '2022-01-01 11:00:00', '2022-01-01 12:00:00', '2022-01-01 13:00:00', '2022-01-01 14:00:00', '2022-01-01 15:00:00', '2022-01-01 16:00:00', '2022-01-01 17:00:00', '2022-01-01 18:00:00', '2022-01-01 19:00:00', '2022-01-01 20:00:00', '2022-01-01 21:00:00', '2022-01-01 22:00:00', '2022-01-01 23:00:00'],
+			y: [0.5614788484472027, 0.5462635551152835, 0.5449044425071119, 0.5399355510039566, 0.525333571172988, 0.5128012656887261, 0.4944938901806546, 0.4570601467584591, 0.399455909916361, 0.3490944441400829, 0.3128610318039971, 0.28522800988948477, 0.2804769464810133, 0.28238407665122534, 0.2878229153669092, 0.300452015961285, 0.3155573959475696, 0.32920415808006515, 0.33488485769653203, 0.3582056046293011, 0.386009173087048, 0.4214699214180284, 0.4458242124468766, 0.47429029042897586],
+		  line: {color: '#17BECF',width: 3},
+			name: 'Wind'
+
+		};
+
+		var january_total = {
+		  type: "scatter",
+		  mode: "lines",
+		  x: ['2022-01-01 00:00:00', '2022-01-01 01:00:00', '2022-01-01 02:00:00', '2022-01-01 03:00:00', '2022-01-01 04:00:00', '2022-01-01 05:00:00', '2022-01-01 06:00:00', '2022-01-01 07:00:00', '2022-01-01 08:00:00', '2022-01-01 09:00:00', '2022-01-01 10:00:00', '2022-01-01 11:00:00', '2022-01-01 12:00:00', '2022-01-01 13:00:00', '2022-01-01 14:00:00', '2022-01-01 15:00:00', '2022-01-01 16:00:00', '2022-01-01 17:00:00', '2022-01-01 18:00:00', '2022-01-01 19:00:00', '2022-01-01 20:00:00', '2022-01-01 21:00:00', '2022-01-01 22:00:00', '2022-01-01 23:00:00'],
+			y: [0.5614788484472027, 0.5462635551152835, 0.5449044425071119, 0.5399355510039566, 0.525333571172988, 0.5128012656887261, 0.4944938901806546, 0.4644205470614318, 0.4417675939921191, 0.4333212654523102, 0.4299718343470852, 0.4166062864847764, 0.4090117759044513, 0.3804872323334131, 0.3307492764173557, 0.3043936095491823, 0.3155573959475696, 0.32920415808006515, 0.33488485769653203, 0.3582056046293011, 0.386009173087048, 0.4214699214180284, 0.4458242124468766, 0.47429029042897586],
+		  line: {color: '#39cf17',width: 3},
+			name: 'Total'
+
+		};
+
+		january = [january_first_wind,january_first_pv,january_total]
+
+		var january_end_first_pv = {
+		  type: "scatter",
+		  mode: "lines",
+		  x: ['2022-01-30 00:00:00', '2022-01-30 01:00:00', '2022-01-30 02:00:00', '2022-01-30 03:00:00', '2022-01-30 04:00:00', '2022-01-30 05:00:00', '2022-01-30 06:00:00', '2022-01-30 07:00:00', '2022-01-30 08:00:00', '2022-01-30 09:00:00', '2022-01-30 10:00:00', '2022-01-30 11:00:00', '2022-01-30 12:00:00', '2022-01-30 13:00:00', '2022-01-30 14:00:00', '2022-01-30 15:00:00', '2022-01-30 16:00:00', '2022-01-30 17:00:00', '2022-01-30 18:00:00', '2022-01-30 19:00:00', '2022-01-30 20:00:00', '2022-01-30 21:00:00', '2022-01-30 22:00:00', '2022-01-30 23:00:00'],
+		  y: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 7.347075228145423e-05, 0.01991202536870435, 0.07152088629889106, 0.1190888187712055, 0.14926485765518777, 0.16042804288787738, 0.15498039486722848, 0.13036075214538456, 0.08431228736346108, 0.02668403320885493, 0.00011887118339794456, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+		  line: {color: '#cfa417',width: 3},
+			name: 'PV'
+
+		};
+
+		var january_end_first_wind = {
+		  type: "scatter",
+		  mode: "lines",
+		  x: ['2022-01-30 00:00:00', '2022-01-30 01:00:00', '2022-01-30 02:00:00', '2022-01-30 03:00:00', '2022-01-30 04:00:00', '2022-01-30 05:00:00', '2022-01-30 06:00:00', '2022-01-30 07:00:00', '2022-01-30 08:00:00', '2022-01-30 09:00:00', '2022-01-30 10:00:00', '2022-01-30 11:00:00', '2022-01-30 12:00:00', '2022-01-30 13:00:00', '2022-01-30 14:00:00', '2022-01-30 15:00:00', '2022-01-30 16:00:00', '2022-01-30 17:00:00', '2022-01-30 18:00:00', '2022-01-30 19:00:00', '2022-01-30 20:00:00', '2022-01-30 21:00:00', '2022-01-30 22:00:00', '2022-01-30 23:00:00'],
+			y: [0.6162806517319415, 0.6282508947902911, 0.6213874780976307, 0.6192504175692956, 0.6187875098403813, 0.6109068276397273, 0.6095208934770237, 0.5982262809576956, 0.5709252709935139, 0.539150159050067, 0.5197866655479345, 0.5191151738414168, 0.5268363465861541, 0.5401769489300204, 0.5500815672661971, 0.5171470156405972, 0.47054872074277865, 0.4358205580970859, 0.410444541859093, 0.3918927288492506, 0.3795537176776364, 0.36444622603277654, 0.368569900804937, 0.3696482271799204],
+		  line: {color: '#17BECF',width: 3},
+			name: 'Wind'
+
+		};
+
+		var january_end_total = {
+		  type: "scatter",
+		  mode: "lines",
+		  x: ['2022-01-30 00:00:00', '2022-01-30 01:00:00', '2022-01-30 02:00:00', '2022-01-30 03:00:00', '2022-01-30 04:00:00', '2022-01-30 05:00:00', '2022-01-30 06:00:00', '2022-01-30 07:00:00', '2022-01-30 08:00:00', '2022-01-30 09:00:00', '2022-01-30 10:00:00', '2022-01-30 11:00:00', '2022-01-30 12:00:00', '2022-01-30 13:00:00', '2022-01-30 14:00:00', '2022-01-30 15:00:00', '2022-01-30 16:00:00', '2022-01-30 17:00:00', '2022-01-30 18:00:00', '2022-01-30 19:00:00', '2022-01-30 20:00:00', '2022-01-30 21:00:00', '2022-01-30 22:00:00', '2022-01-30 23:00:00'],
+			y: [0.6162806517319415, 0.6282508947902911, 0.6213874780976307, 0.6192504175692956, 0.6187875098403813, 0.6109068276397273, 0.6095943642293051, 0.6181383063264, 0.642446157292405, 0.6582389778212725, 0.6690515232031222, 0.6795432167292942, 0.6818167414533826, 0.670537701075405, 0.6343938546296581, 0.5438310488494521, 0.4706675919261766, 0.4358205580970859, 0.410444541859093, 0.3918927288492506, 0.3795537176776364, 0.36444622603277654, 0.368569900804937, 0.3696482271799204],
+		  line: {color: '#39cf17',width: 3},
+			name: 'Total'
+
+		};
+
+		january_end = [january_end_first_wind,january_end_first_pv,january_end_total]
+
+	var april_first_pv = {
+		  type: "scatter",
+		  mode: "lines",
+		  x: ['2022-04-30 00:00:00', '2022-04-30 01:00:00', '2022-04-30 02:00:00', '2022-04-30 03:00:00', '2022-04-30 04:00:00', '2022-04-30 05:00:00', '2022-04-30 06:00:00', '2022-04-30 07:00:00', '2022-04-30 08:00:00', '2022-04-30 09:00:00', '2022-04-30 10:00:00', '2022-04-30 11:00:00', '2022-04-30 12:00:00', '2022-04-30 13:00:00', '2022-04-30 14:00:00', '2022-04-30 15:00:00', '2022-04-30 16:00:00', '2022-04-30 17:00:00', '2022-04-30 18:00:00', '2022-04-30 19:00:00', '2022-04-30 20:00:00', '2022-04-30 21:00:00', '2022-04-30 22:00:00', '2022-04-30 23:00:00'],
+		  y: [0.0, 0.0, 0.0, 0.0002943073957984497, 0.01633818815979078, 0.07471916923903711, 0.1541146306698888, 0.22406949871402163, 0.2756111385354007, 0.30576373848689814, 0.31692722927435035, 0.31586716829596984, 0.30610140848175366, 0.2837558344366601, 0.24109945556602372, 0.17783817136297864, 0.10065274902583453, 0.03566241439839905, 0.005200038836166114, 0.0, 0.0, 0.0, 0.0, 0.0],
+		  line: {color: '#cfa417',width: 3},
+			name: 'PV'
+
+		};
+
+		var april_first_wind = {
+		  type: "scatter",
+		  mode: "lines",
+		  x: ['2022-04-30 00:00:00', '2022-04-30 01:00:00', '2022-04-30 02:00:00', '2022-04-30 03:00:00', '2022-04-30 04:00:00', '2022-04-30 05:00:00', '2022-04-30 06:00:00', '2022-04-30 07:00:00', '2022-04-30 08:00:00', '2022-04-30 09:00:00', '2022-04-30 10:00:00', '2022-04-30 11:00:00', '2022-04-30 12:00:00', '2022-04-30 13:00:00', '2022-04-30 14:00:00', '2022-04-30 15:00:00', '2022-04-30 16:00:00', '2022-04-30 17:00:00', '2022-04-30 18:00:00', '2022-04-30 19:00:00', '2022-04-30 20:00:00', '2022-04-30 21:00:00', '2022-04-30 22:00:00', '2022-04-30 23:00:00'],
+			y: [0.1664412272948258, 0.15850419307190167, 0.15151612464849334, 0.1424658143285453, 0.12832296659032713, 0.10055587232304165, 0.06882145535513566, 0.050273506211350356, 0.0426792034741927, 0.03696307855891619, 0.03452636393413747, 0.036333175027386186, 0.04344843716911468, 0.05326002130545763, 0.06493716084658431, 0.07928063948042609, 0.09108794156761785, 0.1010034061436239, 0.1120181752388598, 0.12085538422686229, 0.1232393623049299, 0.1196751553793323, 0.12016145877636365, 0.11174799291286101],
+		  line: {color: '#17BECF',width: 3},
+			name: 'Wind'
+
+		};
+
+		var april_end_total = {
+		  type: "scatter",
+		  mode: "lines",
+		  x: ['2022-04-30 00:00:00', '2022-04-30 01:00:00', '2022-04-30 02:00:00', '2022-04-30 03:00:00', '2022-04-30 04:00:00', '2022-04-30 05:00:00', '2022-04-30 06:00:00', '2022-04-30 07:00:00', '2022-04-30 08:00:00', '2022-04-30 09:00:00', '2022-04-30 10:00:00', '2022-04-30 11:00:00', '2022-04-30 12:00:00', '2022-04-30 13:00:00', '2022-04-30 14:00:00', '2022-04-30 15:00:00', '2022-04-30 16:00:00', '2022-04-30 17:00:00', '2022-04-30 18:00:00', '2022-04-30 19:00:00', '2022-04-30 20:00:00', '2022-04-30 21:00:00', '2022-04-30 22:00:00', '2022-04-30 23:00:00'],
+			y: [0.1664412272948258, 0.15850419307190167, 0.15151612464849334, 0.14276012172434374, 0.14466115475011793, 0.17527504156207876, 0.22293608602502446, 0.274343004925372, 0.3182903420095934, 0.3427268170458143, 0.35145359320848785, 0.35220034332335604, 0.34954984565086833, 0.33701585574211773, 0.30603661641260804, 0.2571188108434047, 0.1917406905934524, 0.13666582054202295, 0.11721821407502592, 0.12085538422686229, 0.1232393623049299, 0.1196751553793323, 0.12016145877636365, 0.11174799291286101],
+		    line: {color: '#39cf17', width: 3},
+			name: 'Total'
+
+		};
+
+		april = [april_first_wind,april_first_pv,april_end_total]
+		var layout1 = {
+			showlegend: true,
+			  paper_bgcolor:'rgba(0,0,0,0)',
+              plot_bgcolor:'rgba(0,0,0,0)',
+		};
+		var layout2 = {
+			showlegend: true,
+			  paper_bgcolor:'rgba(0,0,0,0)',
+              plot_bgcolor:'rgba(0,0,0,0)',
+			title:'Scenario B - 31st Jan',
+		};
+		var layout3 = {
+			showlegend: true,
+			  paper_bgcolor:'rgba(0,0,0,0)',
+              plot_bgcolor:'rgba(0,0,0,0)',
+			 title:'Scenario C - 30th April',
+		};
+
+		var config = {locale: 'fr', staticPlot: true};
+
+
+
+		Plotly.newPlot('chart1', january, layout1, config);
+		Plotly.newPlot('chart2', january_end, layout2, config);
+		Plotly.newPlot('chart3', april, layout3, config);
+
+
+        </script>
+</html>

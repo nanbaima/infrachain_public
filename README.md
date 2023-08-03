@@ -1,1 +1,1 @@
-# infrachain_public
+# InfraChain

@@ -1,0 +1,22 @@
+### hello world
+
+GET http://localhost:8888/ HTTP/1.1
+
+### Push on/off schedule
+GET http://localhost:8888/push_schedule?key=e25b1a9e-0999-406a-a910-3e9a3f0cca2d&values=on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,off,off,off,off HTTP/1.1
+
+### GET on/off schedule
+GET http://localhost:8888/schedule?key=e25b1a9e-0999-406a-a910-3e9a3f0cca2d HTTP/1.1
+
+### Push renewable share for 24h
+GET http://localhost:8888/push_renewable_share?key=rs_281ec91d-d143-4c04-ae78-645f2129f23d&data=1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6 HTTP/1.1
+
+### GET renewable share for 24h
+GET http://localhost:8888/get_renewable_share?key=rs_281ec91d-d143-4c04-ae78-645f2129f23d HTTP/1.1
+
+### GET total energy saved
+GET http://localhost:8888/get_total_energy_saved?key=t_c04e2ea6-f487-407a-b04b-a52fd25cb3db HTTP/1.1
+
+### Push total energy saved
+GET http://localhost:8888/push_total_energy_saved?key=t_c04e2ea6-f487-407a-b04b-a52fd25cb3db&value=99 HTTP/1.1
+

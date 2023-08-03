@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  mdot-blockchain-server:
+    build: .
+    ports:
+      - "8888:8888"
+    command: npm run prod

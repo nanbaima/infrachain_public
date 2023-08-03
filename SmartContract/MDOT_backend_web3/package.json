@@ -1,0 +1,17 @@
+{
+  "name": "mdot-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "prod": "node src/index.js"
+  },
+  "keywords": [],
+  "author": "Egor Ermolaev",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "ethers": "^5.5.2",
+    "express": "^4.17.2"
+  }
+}
