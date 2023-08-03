@@ -1,6 +1,14 @@
-# Infrachain
+# Infrachain Public
 
-This repository contains the source code for the Infrachain project, which includes smart contracts and backend services for managing IoT devices and energy data.
+This repository contains the source code for the Infrachain project, an innovative solution developed during a 30-hour hackathon challenge. The project combines blockchain and IoT (Internet of Things) technologies to optimize energy consumption in the public sector.
+
+## Challenge Description
+
+The challenge was to conceive and develop a novel solution based on blockchain combined with IoT to further optimize the energy consumption of the government. This could be addressed by optimizing energy usage in public buildings, public infrastructure, or any other public asset.
+
+The Infrachain project is a proof of concept (PoC) DApp running on the public sector blockchain (PSB) that demonstrates a novel way of how energy savings can be achieved in the public sector by involving IoT devices and retrieving specific information from external data sources. The DApp can include interaction with external stakeholders and favor energy-saving behaviors.
+
+The DApp interacts with the Open Data Portal (https://data.public.lu/) to retrieve and publish data. It does not store any personal information on the chain but acts as a trust anchor between the DApp parties, with any personal information stored off-chain with the necessary data protection mechanisms in place.
 
 ## Structure
 
@@ -38,5 +46,3 @@ The backend services provide several endpoints for interacting with the smart co
 - `/get_renewable_share`: Gets a renewable energy share from the `iot` contract.
 - `/push_total_energy_saved`: Pushes the total energy saved to the `iot` contract.
 - `/get_total_energy_saved`: Gets the total energy saved from the `iot` contract.
-
-Please note that this is a suggested structure and may need to be adjusted based on the specifics of the project.
