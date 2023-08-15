@@ -108,15 +108,15 @@ def get_re_share_increase(re_share, ac_on):
 def push_to_sc(ac_on_str, re_share_str, re_share_increase_str):
     # push all values to smart contract
     r = requests.get(
-        "http://localhost:8888/push_schedule?key=e25b1a9e-0999-406a-a910-3e9a3f0cca2d&values="
+        "http://localhost:8888/push_schedule?key=[APIKEY]&values="
         + ac_on_str
     )
     r = requests.get(
-        "http://localhost:8888/push_renewable_share?key=rs_281ec91d-d143-4c04-ae78-645f2129f23d&data="
+        "http://localhost:8888/push_renewable_share?key=[APIKEY]d&data="
         + re_share_str
     )
     r = requests.get(
-        "http://localhost:8888/push_total_energy_saved?key=t_c04e2ea6-f487-407a-b04b-a52fd25cb3db&value="
+        "http://localhost:8888/push_total_energy_saved?key=[APIKEY]&value="
         + re_share_increase_str
     )
     #print(r.text)

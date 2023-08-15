@@ -37,11 +37,11 @@ def get_post_javascript_data():
     magic_time(int(30),int(sceneario),float(lr_results))
     sleep(60)
 
-    on_off = requests.get('http://localhost:8888/schedule?key=e25b1a9e-0999-406a-a910-3e9a3f0cca2d')
+    on_off = requests.get('http://localhost:8888/schedule?key=[APIKEY]')
 
-    rs = requests.get('http://localhost:8888/get_renewable_share?key=rs_281ec91d-d143-4c04-ae78-645f2129f23d')
+    rs = requests.get('http://localhost:8888/get_renewable_share?key=[APIKEY]')
 
-    increased_rs = requests.get('http://localhost:8888/get_total_energy_saved?key=t_c04e2ea6-f487-407a-b04b-a52fd25cb3db').json()
+    increased_rs = requests.get('http://localhost:8888/get_total_energy_saved?key=[APIKEY]').json()
 
 
     results_on_off = ([[1, 0][val == "off"] for val in on_off.json()][-24:])
@@ -92,7 +92,7 @@ def clean_dataset(input_data,building_year,living_space,basement_available,roof_
 
 
 def turn_on_off(results_on_off):
-    requests.get('https://maker.ifttt.com/trigger/turn_off/with/key/bh4uJo0AmZ4l8gDHTXAIsp')
+    requests.get('https://maker.ifttt.com/trigger/turn_off/with/key/[APIKEY]')
     sleep(5)
     prev_state = 0
     for on_off in results_on_off:
@@ -106,15 +106,15 @@ def turn_on_off(results_on_off):
 
         if on_off == 1:
             print('change to 1')
-            requests.get('https://maker.ifttt.com/trigger/turn_on/with/key/bh4uJo0AmZ4l8gDHTXAIsp')
+            requests.get('https://maker.ifttt.com/trigger/turn_on/with/key/[APIKEY]')
             sleep(5)
         else:
             print('change to 0')
 
-            requests.get('https://maker.ifttt.com/trigger/turn_off/with/key/bh4uJo0AmZ4l8gDHTXAIsp')
+            requests.get('https://maker.ifttt.com/trigger/turn_off/with/key/[APIKEY]')
             sleep(5)
 
 
     sleep(5)
-    requests.get('https://maker.ifttt.com/trigger/turn_off/with/key/bh4uJo0AmZ4l8gDHTXAIsp')
+    requests.get('https://maker.ifttt.com/trigger/turn_off/with/key/[APIKEY]')
     return None
