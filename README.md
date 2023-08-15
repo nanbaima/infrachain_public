@@ -33,13 +33,14 @@ The `SmartContract` directory contains two subdirectories:
 The `input_web` directory contains the `data` subdirectory, which includes CSV files with energy data.
 
 ## Setup
+
 To set up the project, follow these steps:
 
-Install Dependencies: Ensure you have Node.js and npm installed. Navigate to the project directory and run npm install to install the necessary dependencies.
-Environment Variables: The backend services require certain environment variables to function correctly.
-Infura API Key: This is required to interact with the Ethereum blockchain. Sign up on Infura to obtain an API key. Replace YOUR_INFURA_API_KEY in the relevant files with your actual Infura API key.
-Ethereum Private Key: This is required to deploy and interact with smart contracts. Replace YOUR_ETHEREUM_PRIVATE_KEY in the relevant files with your actual Ethereum private key.
-Ensure Anonymity: Before publicizing the repository, ensure that all private information, API keys, and other sensitive data are removed or replaced with placeholders.
+1. **Install Dependencies**: Ensure you have Node.js and npm installed. Navigate to the project directory and run `npm install` to install the necessary dependencies.
+2. **Environment Variables**: The backend services require certain environment variables to function correctly. 
+   - **Infura API Key**: This is required to interact with the Ethereum blockchain. Sign up on [Infura](https://infura.io/) for an API key. Replace `YOUR_INFURA_API_KEY` in the relevant files with your Infura API key.
+   - **Ethereum Private Key**: This is required to deploy and interact with the smart contracts. Replace `YOUR_ETHEREUM_PRIVATE_KEY` in the relevant files with your Ethereum private key.
+   - **Ensure Anonymity**: Before publicizing the repository, ensure all private information, API keys, and other sensitive data are removed or replaced with placeholders.
 
 ## Usage
 
