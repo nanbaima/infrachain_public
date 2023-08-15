@@ -32,7 +32,7 @@ The `SmartContract` directory contains two subdirectories:
 
 The `input_web` directory contains the `data` subdirectory, which includes CSV files with energy data.
 
-Setup
+## Setup
 To set up the project, follow these steps:
 
 Install Dependencies: Ensure you have Node.js and npm installed. Navigate to the project directory and run npm install to install the necessary dependencies.
