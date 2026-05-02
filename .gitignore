@@ -1,2 +1,7 @@
 
+.DS_Store
+._*
+node_modules/
 SmartContract/backend_web3/node_modules/
+.env
+*.log
