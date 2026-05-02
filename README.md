@@ -1,54 +1,55 @@
 # Infrachain Public
 
-This repository contains the source code for the Infrachain project, an innovative solution developed during a 30-hour hackathon challenge. The project combines blockchain and IoT (Internet of Things) technologies to optimize energy consumption in the public sector.
+Proof-of-concept blockchain and IoT project for public-sector energy optimization.
 
-## Challenge Description
+The repository combines smart contracts, a small Web3 backend, and an input web application that works with energy data. It was created for an Infrachain/public-sector blockchain challenge and demonstrates how off-chain energy data and IoT-style inputs can be anchored or exchanged through blockchain interactions.
 
-The challenge was to conceive and develop a novel solution based on blockchain combined with IoT to further optimize the government's energy consumption. This could be addressed by optimizing energy usage in public buildings, infrastructure, or other public assets.
+## Repository Layout
 
-The Infrachain project is a proof of concept (PoC) DApp running on the public sector blockchain (PSB) that demonstrates a novel way of how energy savings can be achieved in the public sector by involving IoT devices and retrieving specific information from external data sources. The DApp can include interaction with external stakeholders and favor energy-saving behaviors.
+- `SmartContract/smart_contract/` - Hardhat project with Solidity contracts, deployment script, and tests.
+- `SmartContract/smart_contract/contracts/CRUD.sol` - generic string-to-string-array CRUD contract.
+- `SmartContract/smart_contract/contracts/iot.sol` - contract for device schedules, renewable-energy share, and total energy-saved values.
+- `SmartContract/backend_web3/` - Express/Web3 backend that exposes HTTP endpoints for contract interaction.
+- `SmartContract/backend_web3/src/index.js` - backend server entry point.
+- `input_web/` - web/input prototype and local data/model artifacts.
+- `input_web/data/` - CSV energy datasets used by the prototype.
 
-The DApp interacts with the Open Data Portal (https://data.public.lu/) to retrieve and publish data. It does not store any personal information on the chain but acts as a trust anchor between the DApp parties, with any personal information stored off-chain with the necessary data protection mechanisms in place.
+## Backend Setup
 
-## Structure
+```bash
+cd SmartContract/backend_web3
+npm ci
+npm run prod
+```
 
-The repository is divided into two main directories:
+The backend listens on port `8888` when run through the existing compose file or `npm run prod`.
 
-1. `SmartContract`: This directory contains the source code for the smart contracts and the backend services.
-2. `input_web`: This directory contains the data used by the backend services.
+## Smart Contract Setup
 
-## Smart Contracts
+```bash
+cd SmartContract/smart_contract
+npm ci
+npm test
+```
 
-The `SmartContract` directory contains two subdirectories:
+Useful scripts are defined in the smart-contract `package.json` and include compile, test, deploy, and verify workflows.
 
-1. `MDOT_backend_web3`: This directory contains the backend services for the project. The main file is `index.js`, which sets up an Express.js server and provides endpoints for interacting with the smart contracts.
+## Backend API Shape
 
-2. `MDOT_smart_contract`: This directory contains the smart contracts for the project. There are two main contracts:
+The backend includes routes for:
 
-   - `CRUD.sol`: This contract provides basic CRUD operations for mapping strings to arrays of strings.
-   - `iot.sol`: This contract provides operations for managing IoT devices and energy data. It includes methods for pushing and getting device schedules, renewable energy shares, and total energy saved.
+- pushing and reading device schedules
+- pushing and reading renewable-energy share values
+- pushing and reading total energy-saved values
 
-## Data
+Check `SmartContract/backend_web3/src/index.js` for the exact route names and request payloads.
 
-The `input_web` directory contains the `data` subdirectory, which includes CSV files with energy data.
+## Configuration and Secrets
 
-## Setup
+Do not commit private keys, Infura/API keys, wallet mnemonics, or deployment secrets. Use `.env` or another ignored local configuration mechanism for sensitive values.
 
-To set up the project, follow these steps:
+## Notes
 
-1. **Install Dependencies**: Ensure you have Node.js and npm installed. Navigate to the project directory and run `npm install` to install the necessary dependencies.
-2. **Environment Variables**: The backend services require certain environment variables to function correctly. 
-   - **Infura API Key**: This is required to interact with the Ethereum blockchain. Sign up on [Infura](https://infura.io/) for an API key. Replace `YOUR_INFURA_API_KEY` in the relevant files with your Infura API key.
-   - **Ethereum Private Key**: This is required to deploy and interact with the smart contracts. Replace `YOUR_ETHEREUM_PRIVATE_KEY` in the relevant files with your Ethereum private key.
-   - **Ensure Anonymity**: Before publicizing the repository, ensure all private information, API keys, and other sensitive data are removed or replaced with placeholders.
-
-## Usage
-
-The backend services provide several endpoints for interacting with the smart contracts:
-
-- `/push_schedule`: Pushes a device schedule to the `iot` contract.
-- `/schedule`: Gets a device schedule from the `iot` contract.
-- `/push_renewable_share`: Pushes a renewable energy share to the `iot` contract.
-- `/get_renewable_share`: Gets a renewable energy share from the `iot` contract.
-- `/push_total_energy_saved`: Pushes the total energy saved to the `iot` contract.
-- `/get_total_energy_saved`: Gets the total energy saved from the `iot` contract.
+- `package-lock.json` files are tracked and should be used with `npm ci`.
+- Generated dependencies such as `node_modules/` are ignored.
+- The backend Dockerfile is pinned to Node 20 and uses `npm ci`; Docker details are intentionally secondary to the local project overview here.
